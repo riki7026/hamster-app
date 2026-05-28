@@ -1,3 +1,17 @@
+export type Location = "Home" | "Park" | "Shop" | "Settings";
+
+export type Item = {
+  id: string;
+  name: string;
+  icon: string;
+  price: number;
+  effect: {
+    hunger?: number;
+    happiness?: number;
+    energy?: number;
+  };
+};
+
 export type Hamster = {
   id: number;
   name: string;
