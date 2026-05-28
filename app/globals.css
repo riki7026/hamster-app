@@ -2,8 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background-start: #fff5f7;
+  --background-end: #f0f4ff;
+  --dot-color: rgba(255, 182, 193, 0.2);
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  min-height: 100vh;
+  background-color: var(--background-start);
+  background-image: 
+    radial-gradient(var(--dot-color) 2px, transparent 2px),
+    linear-gradient(to bottom, var(--background-start), var(--background-end));
+  background-size: 30px 30px, 100% 100%;
+  color: #5a4a4a;
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
