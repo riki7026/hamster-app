@@ -15,13 +15,16 @@ export default function Home() {
   const renderScene = () => {
     switch (currentLocation) {
       case "Shop":
-        return <ShopScene />;
+        return (
+          <div className="pt-12">
+            <ShopScene />
+          </div>
+        );
       case "Park":
         return <ParkScene />;
       case "Home":
-      default:
         return (
-          <div className="space-y-12">
+          <div className="space-y-12 pt-12">
             {hamsters.map((hamster) => (
               <motion.div
                 key={hamster.id}
@@ -36,36 +39,39 @@ export default function Home() {
             <Inventory />
           </div>
         );
+      default:
+        return <ParkScene />;
     }
   };
 
   return (
-    <main className="pb-32 pt-12 px-6 max-w-lg mx-auto min-h-screen">
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-4xl font-black text-pink-500 tracking-tight drop-shadow-sm flex items-center justify-center gap-2">
-          <span>🐹</span>
-          {currentLocation === "Home" && "ハムスターのおうち"}
-          {currentLocation === "Shop" && "ハムショップ"}
-          {currentLocation === "Park" && "はむはむ遊園地"}
-        </h1>
-        <p className="text-gray-400 font-medium mt-2 italic">
-          {currentLocation === "Home" && "毎日をふわふわに。"}
-          {currentLocation === "Shop" && "ひまわりの種でお買い物！"}
-          {currentLocation === "Park" && "みんなでおでかけ！"}
-        </p>
-      </motion.div>
+    <main className="pb-32 px-6 max-w-lg mx-auto min-h-screen">
+      {currentLocation !== "Park" && (
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center pt-12 mb-12"
+        >
+          <h1 className="text-4xl font-black text-pink-500 tracking-tight drop-shadow-sm flex items-center justify-center gap-2">
+            <span>🐹</span>
+            {currentLocation === "Home" && "ハムスターのおうち"}
+            {currentLocation === "Shop" && "ハムショップ"}
+          </h1>
+          <p className="text-gray-400 font-medium mt-2 italic">
+            {currentLocation === "Home" && "毎日をふわふわに。"}
+            {currentLocation === "Shop" && "ひまわりの種でお買い物！"}
+          </p>
+        </motion.div>
+      )}
 
       <AnimatePresence mode="wait">
         <motion.div
           key={currentLocation}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
+          className={currentLocation === "Park" ? "pt-12" : ""}
         >
           {renderScene()}
         </motion.div>

@@ -35,7 +35,7 @@ export const useHamsterStore = create<HamsterStore>((set) => ({
       happiness: 85,
       cleanliness: 70,
       friendship: 75,
-      image: "https://placehold.co/140x140/png?text=Punk"
+      image: "" // Not used anymore
     },
     {
       id: 2,
@@ -47,12 +47,12 @@ export const useHamsterStore = create<HamsterStore>((set) => ({
       happiness: 95,
       cleanliness: 88,
       friendship: 90,
-      image: "https://placehold.co/140x140/png?text=Potato"
+      image: "" // Not used anymore
     }
   ],
   seeds: 100,
   inventory: [],
-  currentLocation: "Home",
+  currentLocation: "Park", // Default to Park for the new game experience
 
   feedHamster: (id) =>
     set((state) => ({
